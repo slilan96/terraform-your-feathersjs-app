@@ -14,6 +14,19 @@ resource "heroku_app" "default" {
   region = "eu"
 }
 
+resource "heroku_build" "default" {
+  app    = "${heroku_app.default.name}"
+
+  source = {
+    path = "./sample-feathersjs-app"
+  }
+}
+
+resource "heroku_addon" "database" {
+  app  = "${heroku_app.default.name}"
+  plan = "heroku-postgresql:hobby-dev"
+}
+
 variable "heroku_email" {
   type        = string
   description = "email associated with target heroku account for your app/project"
