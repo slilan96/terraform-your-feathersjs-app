@@ -1,9 +1,8 @@
-# terraform-your-feathersjs-app 
+# terraform-your-feathersjs-app
+
 **Disclaimer**: This terraform config will lead to vendor lock-in to Heroku.
 
 This is a simple terraform config for a [Feathers JS](https://feathersjs.com/) app.
-The `main.tf` file in this project is setup to use with github actions, but you
-can tweak stuff to run it locally
 
 ## Setup
 
@@ -37,6 +36,18 @@ You should be good to go.
 
 #### Setup Heroku provider and create app
 
+The heroku provider is configured in `main.tf` and `version.tf`. A default
+app is also created.
+
+To proceed, the user has to set the following environment variables
+
+```{sh}
+TF_VAR_heroku_email=<email of target heroku account>
+TF_VAR_heroku_api_key=<api token of target heroku account>
+
+TF_VAR_feathers_app_name
+```
 
 ### Running from CI
 
+(*coming soon*)
