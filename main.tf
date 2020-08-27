@@ -14,7 +14,8 @@ resource "heroku_app" "default" {
   region = "eu"
 
   config_vars = {
-    HOST = "${var.feathers_app_name}.herokuapp.com"
+    HOST     = "${var.feathers_app_name}.herokuapp.com"
+    NODE_ENV = "production"
   }
 }
 
