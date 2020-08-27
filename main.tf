@@ -12,10 +12,14 @@ provider "heroku" {
 resource "heroku_app" "default" {
   name   = var.feathers_app_name
   region = "eu"
+
+  config_vars = {
+    HOST = "${var.feathers_app_name}.herokuapp.com"
+  }
 }
 
 resource "heroku_build" "default" {
-  app    = "${heroku_app.default.name}"
+  app    = heroku_app.default.name
 
   source = {
     path = "./sample-feathersjs-app"
@@ -23,7 +27,7 @@ resource "heroku_build" "default" {
 }
 
 resource "heroku_addon" "database" {
-  app  = "${heroku_app.default.name}"
+  app  = heroku_app.default.name
   plan = "heroku-postgresql:hobby-dev"
 }
 
