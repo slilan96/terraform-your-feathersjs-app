@@ -39,14 +39,24 @@ You should be good to go.
 The heroku provider is configured in `main.tf` and `version.tf`. A default
 app is also created.
 
-To proceed, the user has to set the following environment variables
+To proceed, the user has to set the following environment variables.
 
 ```{sh}
 TF_VAR_heroku_email=<email of target heroku account>
 TF_VAR_heroku_api_key=<api token of target heroku account>
 
-TF_VAR_feathers_app_name
+TF_VAR_feathers_app_name=<name of your app heroku app e.g cool-web-app>
 ```
+
+Once you have set those env variables, run `terraform apply`. If the env vars
+are not set, you will be prompted from the command line when your run
+`terraform apply`.
+
+A key assumption we have made in the production config for the feathersjs app
+is that our database connection string will be stored in the `DATABASE_URL`
+confif var. You'll notice that we did not define `DATABASE_URL` in our `main.tf`
+file. This is because heroku will automatically set the `DATABASE_URL` when you
+provision a new heroku postgres database.
 
 ### Running from CI
 
